@@ -13,27 +13,30 @@ class Galton {
 	const int hauteur;
 	std::vector<int> tableau;
 
+	static std::random_device rd;  //Will be used to obtain a seed for the random
+	std::mt19937 gen; //Standard mersenne_twister_engine seeded with rd()
+
 public:
 
-	Galton(int nbBille, int h, std::mt19937 mt) :
+	Galton(int nbBille, int h) :
 			hauteur(h),
 			nbrDeBilles(nbBille)
 	{
 	   tableau.resize(h + 1); // on s'assure d'avoir la place
-		InitialiseTableau(mt);
+		InitialiseTableau();
 	}
 
-	void AfficherTableauEnLigne()
+	void AfficherTableauEnLigne() const
 	{
-		for(int& i : tableau) {
+		for(int i : tableau) {
 			std::cout << i << ' ';
 		}
 	}
 
-	void AfficherTableauEtoiles();
+	void AfficherTableauGraphique() const;
 
 private:
-    void InitialiseTableau(std::mt19937 mt);
+    void InitialiseTableau();
 };
 
 

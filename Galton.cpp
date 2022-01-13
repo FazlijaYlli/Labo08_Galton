@@ -8,9 +8,14 @@
 
 using namespace std;
 
-void Galton::InitialiseTableau(mt19937 gen)
+// number engine
+std::random_device rd; //Will be used to obtain a seed for the random
+std::mt19937 gen(rd()); //Standard mersenne_twister_engine seeded with rd()
+
+
+void Galton::InitialiseTableau()
 {
-	static std::uniform_int_distribution<> distrib(0, 1);
+	std::uniform_int_distribution<> distrib(0, 1);
 
 	int indice;
 
@@ -25,17 +30,20 @@ void Galton::InitialiseTableau(mt19937 gen)
 	}
 }
 
-void Galton::AfficherTableauEtoiles()
+// TODO : passer es "*" et " " en param
+void Galton::AfficherTableauGraphique() const
 {
 	for (int i = (*max_element(tableau.begin(), tableau.end())); i > 0; --i)
 	{
 		// cout << i; // DEBUG
 
-		for (int& val : tableau)
+		for (int val : tableau)
 		{
-			cout << (val>= i ? "*" : " ");
+			cout << (val >= i ? "*" : " ");
 		}
 		cout << endl;
 	}
 }
+
+
 

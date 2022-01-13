@@ -16,6 +16,10 @@ Compilateur       : Mingw-w64 g++ 8.1.0
 #include <limits>
 #include <random>
 #include "Galton.h"
+#include "Utilities.h"
+#include "Dictionnaire.h"
+
+#define VIDER_BUFFER() std::cin.ignore(std::numeric_limits<streamsize>::max(), '\n')
 
 using namespace std;
 
@@ -45,19 +49,59 @@ int main() {
 	}*/
 
 	// number engine
-	std::random_device rd;  //Will be used to obtain a seed for the random
-	std::mt19937 gen(rd()); //Standard mersenne_twister_engine seeded with rd()
-	Galton g(1000, 100, gen);
+	//std::random_device rd;  //Will be used to obtain a seed for the random
+	//std::mt19937 gen(rd()); //Standard mersenne_twister_engine seeded with rd()
+
+	// message d'accueil
+	Afficher(MESSAGE_DEMARRAGE, true);
+
+	bool recommencer;
+	int nbrDeBille;
+	int hauteur;
+
+	do {
+		// get les input utilisateur
+		nbrDeBille = LireUnNombre(BORNE_MIN,BORNE_MAX_BILLE,
+										  MESSAGE_PROMPT_BILLES, MESSAGE_ERREUR_NOMBRE,
+										  true);
+
+		hauteur = LireUnNombre(BORNE_MIN, BORNE_MAX_HAUTEUR,
+									     MESSAGE_PROMPT_HAUTEUR, MESSAGE_ERREUR_NOMBRE,
+									  	  true);
+
+		// création de l'objet + affichage
+		Galton g(nbrDeBille, hauteur);
+		g.AfficherTableauEnLigne();
+		cout << endl;
+		g.AfficherTableauGraphique();
+
+
+		//  lire l'entrée utilisateur pour oui ou non
+		recommencer = LireChar(MESSAGE_RECOMMENCER) == 'y';
+
+	} while (recommencer);
+
+
+	Galton g(1000, 100);
 	g.AfficherTableauEnLigne();
 	cout << endl;
-	g.AfficherTableauEtoiles();
+	//g.AfficherTableauGraphique();
 
 	cout << endl;
 
-	Galton g2(10, 5, gen);
+	Galton g2(10, 5);
 	g2.AfficherTableauEnLigne();
 	cout << endl;
-	g2.AfficherTableauEtoiles();
+	//g2.AfficherTableauGraphique();
+
+	Galton g3(10, 5);
+	g3.AfficherTableauEnLigne();
+	cout << endl;
+	//g3.AfficherTableauGraphique();
+
+	Afficher(MESSAGE_FIN, false);
+	VIDER_BUFFER();
 
    return EXIT_SUCCESS;
 }
+
