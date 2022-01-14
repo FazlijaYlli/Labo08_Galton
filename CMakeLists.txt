@@ -3,4 +3,4 @@ project(Labo08_Galton)
 
 set(CMAKE_CXX_STANDARD 20)
 
-add_executable(Labo08_Galton main.cpp Galton.cpp Galton.h Utilities.cpp Utilities.h Dictionnaire.h)
+add_executable(Labo08_Galton main.cpp Galton.cpp Galton.h Utilitaires.cpp Utilitaires.h Dictionnaire.h)
