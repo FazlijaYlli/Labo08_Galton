@@ -5,8 +5,12 @@ Nom du fichier    : main.cpp
 Nom du labo       : Labo08_Galton Groupe L
 Auteur(s)         : Jeremiah Steiner, Ylli Fazlija
 Date creation     : 11.01.2022
-Description (But) : le but du programme et non le but du labo !!
-Remarque(s)       : BUG ? Entrée fausse non traité par exemple
+Description (But) : Le but du programme est d'utiliser la classe Galton afin de
+ 						  définir la répartiion des billes (stoqué dans un vecteur de int)
+ 						  et de l'afficher sous forme Graphique afin de voir une courbe de
+ 						  Gausse.
+Remarque(s)       : Les bornes min et max sont modifiablent dans les
+						  valeurs positives des int.
 Compilateur       : Mingw-w64 g++ 8.1.0
 -----------------------------------------------------------------------------------
 */
@@ -48,13 +52,17 @@ int main() {
 
 		// création de l'objet + affichage
 		Galton g((unsigned)nbrDeBille, (unsigned)hauteur);
-		cout << g.getTableauBilles();
+		//cout << g.getTableauBilles(); // permet d'afficher le tableu de int en
+		// ligne
 		cout << endl;
 		g.AfficherTableauGraphique(CARACTERE_AFFICHAGE, CARACTERE_ESPACEMENT);
 
 
 		//  lire l'entrée utilisateur pour oui ou non
-		recommencer = (LireChar(MESSAGE_RECOMMENCER) == CARACTERE_VALIDATION);
+		recommencer = (estCharDansvect(LireChar(MESSAGE_RECOMMENCER,
+															 CARACTERES_AFFICHAGE_FIN,
+															 true),
+												 CARACTERES_VALIDATION_FIN));
 
 	} while (recommencer);
 

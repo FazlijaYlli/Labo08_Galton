@@ -24,7 +24,7 @@ class Galton {
    // Propriétés de la planche
 	const unsigned nbrDeBilles;
 	const unsigned hauteur;
-	std::vector<int> tableauBilles;
+	std::vector<int> tableauBilles; // TODO : mettre en unsigned ?
 	static std::random_device rd;  // Sera utilisé comme seed pour l'aléatoire.
 
 public:

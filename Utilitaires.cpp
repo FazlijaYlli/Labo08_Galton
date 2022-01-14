@@ -14,6 +14,7 @@ Compilateur       : Mingw-w64 g++ 8.1.0
 #include <string>
 #include <limits>          // Vider le buffer
 #include <iostream>
+#include <algorithm>
 #include "Dictionnaire.h"
 #include "Utilitaires.h"
 
@@ -43,7 +44,7 @@ int LireUnNombre(int borneMin,
 		Afficher(msgPrompt, false);
 
 		// Afficher les bornes seulement si on a besoin
-		if(afficherBornes)
+		if (afficherBornes)
 		{
 			Afficher(CARACTERE_ESPACE, false);
 			Afficher("["s + to_string(borneMin) + " - " + to_string(borneMax) + "]", false);
@@ -71,13 +72,39 @@ int LireUnNombre(int borneMin,
 	return nombreLu;
 }
 
-char LireChar(const std::string& msgPrompt)
+/// Permet de lire un character, après avoir afficher un message et
+/// une liste de char en rapport avec la question, et de le renvoyer
+/// \param msgPrompt une string d'affichage
+/// \param affichageChars les valeurs prises en compte
+/// \param afficherCharsVal boolean, true les char d'information sont affichés
+/// \return le charactere saisi
+char LireChar(const string& msgPrompt,
+				  const vector<char>& affichageChars,
+				  bool afficherCharsVal)
 {
 	char charLu = ' ';
 
 	Afficher(msgPrompt, false);
 	Afficher(CARACTERE_ESPACE, false);
+
+	if (afficherCharsVal)
+	{
+		Afficher('[', false);
+		Afficher(affichageChars.front(), false);
+
+		for (vector<char>::const_iterator it = affichageChars.begin() + 1;
+			  it != affichageChars.end();
+			  ++it)
+		{
+			Afficher(", ", false);
+			Afficher(*it, false);
+		}
+
+		Afficher("] ", false);
+	}
+
 	Afficher(CARACTERE_FIN_PROMPT, false);
+	Afficher(CARACTERE_ESPACE, false);
 
 	cin >> charLu;
 	cin.clear();
@@ -114,12 +141,25 @@ void Afficher(char caractere,
 /// \param os Flux de sortie
 /// \param v Vecteur à afficher.
 /// \return Référence au flux de sortie.
-ostream& operator<<(ostream& os, const vector<int>& v) {
+ostream& operator<<(ostream& os,
+						  const vector<int>& v)
+{
    os << '[';
-   for (vector<int>::const_iterator it = v.begin(); it != v.end(); ++it) {
+   for (vector<int>::const_iterator it = v.begin(); it != v.end(); ++it)
+	{
       if (it != v.begin())
          os << ", ";
       os << *it;
    }
    return os << ']';
+}
+
+/// Permet de savoir si un char apparait dans une vecteur de char
+/// \param c char a tester
+/// \param listDeChar un vecteur de char
+/// \return true si le char est dans la liste, false sinon
+bool estCharDansvect(const char& c,
+							const std::vector<char>& listDeChar)
+{
+	return (*find(listDeChar.begin(), listDeChar.end(), c) == c);
 }

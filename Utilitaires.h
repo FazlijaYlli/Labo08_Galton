@@ -29,7 +29,15 @@ int LireUnNombre(int borneMin,
 					  const std::string &msgErreur,
 					  bool afficherBornes);
 
-char LireChar(const std::string& msgPrompt);
+/// Permet de lire un character, après avoir afficher un message et
+/// une liste de char en rapport avec la question, et de le renvoyer
+/// \param msgPrompt une string d'affichage
+/// \param affichageChars les valeurs prises en compte
+/// \param afficherCharsVal boolean, true les char d'information sont affichés
+/// \return le charactere saisi
+char LireChar(const std::string& msgPrompt,
+				  const std::vector<char>& AffichageChars,
+				  bool afficherCharsVal);
 
 /// Affiche un message dans la console. Fonction surchargée
 /// \param message Message à Afficher
@@ -47,6 +55,14 @@ void Afficher(char caractere,
 /// \param os Flux de sortie
 /// \param v Vecteur à afficher.
 /// \return Référence au flux de sortie.
-std::ostream& operator <<(std::ostream& os, const std::vector<int>& v);
+std::ostream& operator <<(std::ostream& os,
+								const std::vector<int>& v);
+
+/// Permet de savoir si un char apparait dans une vecteur de char
+/// \param c char a tester
+/// \param listDeChar un vecteur de char
+/// \return true si le char est dans la liste, false sinon
+bool estCharDansvect(const char& c,
+							const std::vector<char>& listDeChar);
 
 #endif //LABO08_GALTON_UTILITAIRES_H
