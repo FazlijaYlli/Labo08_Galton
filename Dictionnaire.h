@@ -25,8 +25,7 @@ const char CARACTERE_AFFICHAGE			=	'*';
 const char CARACTERE_ESPACEMENT			=	' ';
 const char CARACTERE_VALIDATION_1		=	'Y';
 const char CARACTERE_VALIDATION_2		=	'y';
-const char CARACTERE_NONVALIDATION_1	=	'n';
-const char CARACTERE_NONVALIDATION_2	=	'N';
+const char CARACTERE_REFUS_1	         =	'N';
 
 const std::string MESSAGE_PROMPT_HAUTEUR			= "Veuillez entrer un nombre "
 																	"pour la hauteur";
@@ -42,6 +41,6 @@ const std::vector<char> CARACTERES_VALIDATION_FIN = {CARACTERE_VALIDATION_1,
 																CARACTERE_VALIDATION_2};
 
 const std::vector<char> CARACTERES_AFFICHAGE_FIN = {CARACTERE_VALIDATION_1,
-															  CARACTERE_NONVALIDATION_2};
+                                                    CARACTERE_REFUS_1};
 
 #endif //LABO08_GALTON_DICTIONNAIRE_H

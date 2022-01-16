@@ -4,8 +4,9 @@ Nom du fichier    : Galton.h
 Nom du labo       : Labo08_Galton Groupe L
 Auteur(s)         : Jeremiah Steiner, Ylli Fazlija
 Date creation     : 11.01.2022
-Description (But) : Fichier d'en-tête de la classe Galton. Chaque instance de cette classe
-                    représente un plateau avec une hauteur et un nombre de billes donné.
+Description (But) : Fichier d'en-tête de la classe Galton. Chaque instance de
+                    cette classe représente un plateau avec une hauteur
+                    et un nombre de billes donné.
 Remarque(s)       :
 Compilateur       : Mingw-w64 g++ 8.1.0
 -----------------------------------------------------------------------------------
@@ -18,7 +19,11 @@ Compilateur       : Mingw-w64 g++ 8.1.0
 #include <ostream>   // Permets d'afficher un tableau en utilisant un output stream.
 #include <random>
 
-
+/// Déclaration de la classe Galton
+/// Chaque instance contient un nombre de billes et une hauteur.
+/// Les propriétés nbrDeBilles et hauteur sont constantes.
+/// Ceci est un choix car lorsque l'objet est instancié, on ne souhaite pas
+/// qu'il soit modifié ensuite.
 class Galton {
 
    // Propriétés de la planche

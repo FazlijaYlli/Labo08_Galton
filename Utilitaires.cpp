@@ -14,10 +14,8 @@ Compilateur       : Mingw-w64 g++ 8.1.0
 #include <string>
 #include <limits>          // Vider le buffer
 #include <iostream>
-#include <algorithm>
 #include "Dictionnaire.h"
 #include "Utilitaires.h"
-
 
 #define VIDER_BUFFER() std::cin.ignore(std::numeric_limits<streamsize>::max(), '\n')
 
@@ -33,8 +31,8 @@ using namespace std;
 /// \return Le nombe récupéré du flux
 int LireUnNombre(int borneMin,
 					  int borneMax,
-					  const std::string &msgPrompt,
-					  const std::string &msgErreur,
+					  const string& msgPrompt,
+					  const string& msgErreur,
 					  bool afficherBornes)
 {
 	bool erreur;
@@ -87,6 +85,7 @@ char LireChar(const string& msgPrompt,
 	Afficher(msgPrompt, false);
 	Afficher(CARACTERE_ESPACE, false);
 
+   // Affiche les réponses possibles.
 	if (afficherCharsVal)
 	{
 		Afficher('[', false);
@@ -96,7 +95,7 @@ char LireChar(const string& msgPrompt,
 			  it != affichageChars.end();
 			  ++it)
 		{
-			Afficher(", ", false);
+			Afficher(" / ", false);
 			Afficher(*it, false);
 		}
 
@@ -116,7 +115,7 @@ char LireChar(const string& msgPrompt,
 /// Affiche un message dans la console. Fonction surchargée
 /// \param message Message à Afficher
 /// \param retourLigne Est-ce qu'il faut faire un retour de ligne?
-void Afficher(const string &message,
+void Afficher(const string& message,
 				  bool retourLigne)
 {
 	cout << message;
@@ -158,8 +157,8 @@ ostream& operator<<(ostream& os,
 /// \param c char a tester
 /// \param listDeChar un vecteur de char
 /// \return true si le char est dans la liste, false sinon
-bool estCharDansvect(const char& c,
-							const std::vector<char>& listDeChar)
+bool estCharDansVect(const char& c,
+                     const vector<char>& listDeChar)
 {
 	return (*find(listDeChar.begin(), listDeChar.end(), c) == c);
 }

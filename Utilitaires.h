@@ -62,7 +62,7 @@ std::ostream& operator <<(std::ostream& os,
 /// \param c char a tester
 /// \param listDeChar un vecteur de char
 /// \return true si le char est dans la liste, false sinon
-bool estCharDansvect(const char& c,
-							const std::vector<char>& listDeChar);
+bool estCharDansVect(const char& c,
+                     const std::vector<char>& listDeChar);
 
 #endif //LABO08_GALTON_UTILITAIRES_H
