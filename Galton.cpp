@@ -13,6 +13,7 @@ Compilateur       : Mingw-w64 g++ 8.1.0
 
 
 #include <iostream>
+#include <iomanip>
 #include <algorithm>  // Utilisé pour trouver le plus grand élément dans un tableau.
 #include "Galton.h"
 
@@ -64,17 +65,22 @@ void Galton::LancerBilles()
    // Chaque itèration correspond à une bille.
 	for(size_t i = 0; i < nbrDeBilles; ++i) {
 		indice = 0;
+		int indiceTmp = 0;
+		cout << "simulation nouvelle bille : " << endl;
 
       // Deuxième boucle qui itère sur la hauteur.
       // à chaque itération, deux issues sont possibles : droite ou gauche.
       // Si distrib retourne 1, on ajoute 1 à indice.
 		for (size_t n = 0; n < hauteur; ++n) {
 			indice += distrib(gen);
+			Galton::simulationGraphique(indice-indiceTmp, n, indice);
+			indiceTmp = indice;
 		}
 
       // Une fois la deuxième boucle terminée, on a trouvé l'indice de
       // la case dans laquelle la bille tombe.
       tableauBilles[indice]++;
+		cout << endl;
 	}
 }
 
@@ -99,4 +105,17 @@ void Galton::AfficherTableauGraphique(const char& CARACTERE,
 /// Simple getter afin d'accéder au tableau de billes d'une instante Galton.
 vector<int> Galton::getTableauBilles() const {
    return tableauBilles;
+}
+
+void Galton::simulationGraphique(bool droite, int hauteurTmp, int derivation)
+{
+	if (droite)
+	{
+		cout << setw((hauteur/2 + (derivation- hauteurTmp)) + derivation) << ">" << endl;
+	}
+	else
+	{
+		cout << setw((hauteur/2 + (derivation- hauteurTmp)) + derivation) << "<" <<
+		endl;
+	}
 }

@@ -55,6 +55,8 @@ public:
    /// \param ESPACE Caractère qui représentera un espace.
 	void AfficherTableauGraphique(const char& CARACTERE, const char& ESPACE) const;
 
+	void simulationGraphique(bool droit, int hauteur, int derivation);
+
 private:
    /// Permets de lancer les billes dans la planche et remplir le tableau de billes.
    void LancerBilles();
